@@ -9,10 +9,11 @@ def get_file_list(path):
         for file in files:
             if file.endswith(".xml") and file != "proto_.xml":
                 filelist.append(os.path.join(root, file))
+    # print(filelist)  #  Проверка пути!!!!!!!!!!!!!!!!
     return filelist
 
 
-# Функция парсит кпт и вытаскивает количество контуров, количество точек и их координаты
+# MIF        Функция парсит кпт и вытаскивает количество контуров, количество точек и их координаты
 def make_list_for_mif_actual_land(file_name):
     list_land = []
     tree = ET.parse(file_name)
@@ -37,7 +38,7 @@ def make_list_for_mif_actual_land(file_name):
     return list_land
 
 
-# Функция печатает в файл mif заголовочные данные
+# MIF Функция печатает в файл mif заголовочные данные
 def print_head_mif():
     file_mif_head = open('actual_land.mif', 'a')
     head_data = [
@@ -73,56 +74,43 @@ def make_list_for_mid_actual_land(file_name):
     list_category = []
     list_request = []
     tree = ET.parse(file_name)
+    root = tree.getroot()
 
-    data1 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/object/common_data/type')
-    # for types_land_record in data1:
-    type_obj = data1[0].find('value').text
-    print(type_obj)
-    list_type_land_record.append(type_obj)
+    data = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record')
+    for data1 in data:
+        data2 = data1.findall('./object/common_data/type/value')
+        for type in data2:
+            _type = type.text
+            print(_type)
+        data3 = data1.findall('./object/common_data/cad_number')
+        for cad_number in data3:
+            print(cad_number.text)
+        data4 = data1.findall('./address_location/address/readable_address')
+        for adress in data4:
+            print(adress.text)
+        data5 = data1.findall('params/permitted_use/permitted_use_established/by_document')
+        for permitted_use in data5:
+            print(permitted_use.text)
+        data6 = data1.findall('params/area/value')
+        for area in data6:
+            print(area.text)
+        date6 = data1.findall('./cost/value')
+        if len(date6) >= 1:
+            for cost in date6:
+                _cost = cost.text
+        else:
+            _cost = "None"
+        print(_cost)
+        date7 = data1.findall('params/category/type/value')
+        for category in date7:
+            print(category.text)
+        request = root[1][0].text
+        print(request)
 
-    data2 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/object/common_data')
-    for cad_numbers in data2:
-        cad_number = cad_numbers.find('cad_number').text
-        list_cad_number.append(cad_number)
 
-    data3 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/address_location/address')
-    for readable_addresss in data3:
-        readable_address = readable_addresss.find('readable_address').text
-        list_readable_address.append(readable_address)
-
-    data4 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/params/permitted_use/permitted_use_established')
-    for permitted_uses in data4:
-        permitted_use = permitted_uses.find('by_document').text
-        list_permitted_use.append(permitted_use)
-
-
-    data5 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/params/area')
-    for areas in data5:
-        area = areas.find('value').text
-        list_area.append(area)
-
-    data6 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/cost')
-    for costs in data6:
-        cost = costs.find('value').text
-        if cost == '':
-            cost = "None"
-        list_cost.append(cost)
-        # print(cost)
-
-    data8 = tree.findall('details_request')
-    for requests in data8:
-        request = requests.find('date_receipt_request_reg_authority_rights').text
-        list_request.append(request)
-
-    data7 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/params/category/type')
-
-    for categorys in data7:
-        category = categorys.find('value').text
-        list_category.append(category)
-        list_request.append(request)
 
     # file_mid = open('actual_land.mid', 'a')
-    i = 0
+    # i = 0
     # while i < len(list_type_land_record):
     #     a = ("\"" + list_type_land_record[i] + "\","
     #          + "\"" + list_cad_number[i] + "\","
@@ -150,7 +138,8 @@ def make_list_for_mid_actual_land(file_name):
 
 if __name__ == '__main__':
     # print_head_mif()
-    filelist = get_file_list("C:/Users/Necvetaeva_v/PycharmProjects/ParserXML/materials/23.05.2022_12_32_выгрузка/Новая папка")
+    # filelist = get_file_list("C:/Users/Necvetaeva_v/PycharmProjects/ParserXML/materials/23.05.2022_12_32_выгрузка/Новая папка")
+    filelist = get_file_list("D:\project_Python\ParserXML\materials\_Level1")
     # Открываем поочередно кпт.xml файлы
     for file_name in filelist:
         # file_mif = open('actual_land.mif', 'a')
