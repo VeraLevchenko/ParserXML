@@ -75,9 +75,10 @@ def make_list_for_mid_actual_land(file_name):
     tree = ET.parse(file_name)
 
     data1 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/object/common_data/type')
-    for types_land_record in data1:
-        type_obj = types_land_record.find('value').text
-        list_type_land_record.append(type_obj)
+    # for types_land_record in data1:
+    type_obj = data1[0].find('value').text
+    print(type_obj)
+    list_type_land_record.append(type_obj)
 
     data2 = tree.findall('cadastral_blocks/cadastral_block/record_data/base_data/land_records/land_record/object/common_data')
     for cad_numbers in data2:
@@ -106,7 +107,7 @@ def make_list_for_mid_actual_land(file_name):
         if cost == '':
             cost = "None"
         list_cost.append(cost)
-        print(cost)
+        # print(cost)
 
     data8 = tree.findall('details_request')
     for requests in data8:
@@ -120,7 +121,7 @@ def make_list_for_mid_actual_land(file_name):
         list_category.append(category)
         list_request.append(request)
 
-    file_mid = open('actual_land.mid', 'a')
+    # file_mid = open('actual_land.mid', 'a')
     i = 0
     # while i < len(list_type_land_record):
     #     a = ("\"" + list_type_land_record[i] + "\","
@@ -134,29 +135,29 @@ def make_list_for_mid_actual_land(file_name):
     #     file_mid.write(a + '\n')
     #     i += 1
     #     print(i)
-    file_mid.close()
-    print(len(list_type_land_record))
-    print(len(list_cad_number))
-    print(len(list_readable_address))
-    print(len(list_permitted_use))
-    print(len(list_area))
-    print(len(list_cost))
-    print(len(list_category))
-    print(len(list_request))
+    # file_mid.close()
+    # print(len(list_type_land_record))
+    # print(len(list_cad_number))
+    # print(len(list_readable_address))
+    # print(len(list_permitted_use))
+    # print(len(list_area))
+    # print(len(list_cost))
+    # print(len(list_category))
+    # print(len(list_request))
 
     return list_semantic_land
 
 
 if __name__ == '__main__':
-    print_head_mif()
-    filelist = get_file_list("D:/project_Python/Парсер КПТ/выгрузка")
+    # print_head_mif()
+    filelist = get_file_list("C:/Users/Necvetaeva_v/PycharmProjects/ParserXML/materials/23.05.2022_12_32_выгрузка/Новая папка")
     # Открываем поочередно кпт.xml файлы
     for file_name in filelist:
-        file_mif = open('actual_land.mif', 'a')
-        list_coordinate_land_record = make_list_for_mif_actual_land(file_name)
-        # дозаписываем полученный список в файл
-        for data8 in list_coordinate_land_record:
-           file_mif.write(str(data8) + '\n')
-        file_mif.close()
+        # file_mif = open('actual_land.mif', 'a')
+        # list_coordinate_land_record = make_list_for_mif_actual_land(file_name)
+        # # дозаписываем полученный список в файл
+        # for data8 in list_coordinate_land_record:
+        #    file_mif.write(str(data8) + '\n')
+        # file_mif.close()
         make_list_for_mid_actual_land(file_name)
 
