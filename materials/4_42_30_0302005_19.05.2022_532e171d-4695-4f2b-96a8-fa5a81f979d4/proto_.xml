@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Proto SessionID="532e171d-4695-4f2b-96a8-fa5a81f979d4" CodeOut="BC-2022-03-23-212670" CodeReg="ext">
+  <Stage CodeResult="true" CodeStage="processed" Date="2022-03-23T06:11:55.167">
+    <!--{"requestNumber":"BC-2022-03-23-212670","extId":"301160921","correlationId":"301160921","sender":"technokad","senderType":"BC","statusCode":"processed","statusDescription":"Обработка завершена","statusTime":"2022-03-23 06:11:55.167","fileLink":"https://lk.rosreestr.ru/filestorage/download?token=53OlHSvxswT9MrIb4k2sKM6oCFvzraPrK51wHT8x3eZVyqi37CLwEMCExnq_Qo80ZlTXpXCQ1v6mb9rvZVfCxJcnio7aQMQnxdfrlwcMjiqb-rjJnEIc_YGn2Fa-mm_aLYOamJYtU5r_K1ZXdhNgHP1dYV4Ni892k5toog4bwTX5PcB1kL-XYe14OZlJyzwUz11sTconv86_UR65tL95Zg==","terminal":true,"customParameters":[]}-->
+    <Info>Обработка завершена</Info>
+    <Attachment>result.zip</Attachment>
+    <URL>https://lk.rosreestr.ru/filestorage/download?token=53OlHSvxswT9MrIb4k2sKM6oCFvzraPrK51wHT8x3eZVyqi37CLwEMCExnq_Qo80ZlTXpXCQ1v6mb9rvZVfCxJcnio7aQMQnxdfrlwcMjiqb-rjJnEIc_YGn2Fa-mm_aLYOamJYtU5r_K1ZXdhNgHP1dYV4Ni892k5toog4bwTX5PcB1kL-XYe14OZlJyzwUz11sTconv86_UR65tL95Zg==</URL>
+  </Stage>
+</Proto>
